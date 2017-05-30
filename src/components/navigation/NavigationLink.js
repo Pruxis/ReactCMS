@@ -1,42 +1,51 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { NavLink } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 
 /**
  * Author: Laurens Lavaert
  * Date: 30/05/2017
- * @param {title} caption of the link 
- * @param {dropdown} boolean wether or not the component is a dropdown of multiple links
- * @param {link} string that references where the link should point to.
- * @param {icon} string that defines which icon to use for this link.
- * @param {children} NavigationLink components nested inside creating a dropdown effect.
+ * @param {to} string of the route that the link should point to.
+ * @param {exact} When true, the active class/style will only be applied if the location is matched exactly.
+ * @param {icon} String of the icon to use.
+ * @param {title} String of the title to be displayed on the link.
+ * @param {dropdown} Boolean to allow dropdowns.
+ * @param {children} NavigationLink child components to initialise dropdown.
  */
 
 const NavigationLink = ({
+  to,
+  exact,
+  icon,
   title,
   dropdown,
-  link,
-  icon,
   children,
   ...props
 }) => {
   return (
-    <li {...props}>
-      <NavLink activeClassName="active" to={link}>
-        <i className={icon} />
-        <span>title</span>
-      </NavLink>
-      {dropdown && children}
-    </li>
+    <Route
+      path={to}
+      exact={exact}
+      children={({ match }) => (
+        <li className={match && "active"}>
+          <Link to={to}>
+            <i className={icon} />
+            <span>{title}</span>
+          </Link>
+          {dropdown && children}
+        </li>
+      )}
+    />
   );
 };
 
 export default NavigationLink;
 
 NavigationLink.propTypes = {
+  to: PropTypes.string.isRequired,
+  exact: PropTypes.bool,
+  icon: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  dropdown: PropTypes.bool.isRequired,
-  link: PropTypes.string.isRequired,
-  icon: PropTypes.string.isRequired
+  dropdown: PropTypes.bool
 };
