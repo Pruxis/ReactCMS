@@ -9,10 +9,9 @@ import { Link } from "react-router-dom";
  *  --> Standard reference is to the "/" page, gets overwritten if property is provided.
  * @param logo: Source of the logo image.
  * @param logoAlt: Alternative text that belongs to the logo.
- * @param children: Mobile Navigation Component goes in here to provide navigation on mobile devices.
  */
 
-const NavbarHeader = ({ logoLink, logo, logoAlt, children, ...props }) => {
+const NavbarHeader = ({ logoLink, logo, logoAlt, ...props }) => {
   return (
     <div className="navbar navbar-default header-highlight" {...props}>
       <div className="navbar-header">
@@ -27,7 +26,6 @@ const NavbarHeader = ({ logoLink, logo, logoAlt, children, ...props }) => {
           </li>
         </ul>
       </div>
-      {children}
     </div>
   );
 };
