@@ -19,7 +19,7 @@ const UserMenu = ({ profile, link, settingsLink, ...props }) => {
             <img
               src={profile.image}
               className="img-circle img-sm"
-              alt="Profile picture"
+              alt="Profile"
             />
           </Link>
           <div className="media-body">
