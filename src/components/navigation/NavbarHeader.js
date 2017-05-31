@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 
 const NavbarHeader = ({ logoLink, logo, logoAlt, ...props }) => {
   return (
-    <div className="navbar navbar-default header-highlight" {...props}>
+    <div className="navbar navbar-inverse" {...props}>
       <div className="navbar-header">
         <Link to={logoLink || "/"} className="navbar-brand">
           <img src={logo} alt={logoAlt} />
