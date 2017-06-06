@@ -7,7 +7,6 @@ import UserMenu from "./navigation/UserMenu";
 import NavigationLink from "./navigation/NavigationLink";
 
 import image from "../assets/images/logo_icon_dark.png";
-import logo from "../assets/images/logo_light.png";
 
 /* Importing theme styles */
 import "../assets/css/icons/icomoon/styles.css";
@@ -27,8 +26,21 @@ const Container = ({ children }) => {
   );
 };
 
+/* Dumb wrapper component for content. */
+const ContentWrapper = ({ header, children }) => {
+  return (
+    <div className="content-wrapper">
+      {header}
+      <div className="content">
+        {children}
+      </div>
+    </div>
+  );
+};
+
 class Dashboard extends Component {
   render() {
+    console.log(this.props);
     return (
       <div>
         <NavbarHeader logo={image} logoAlt="logo" logoLink="/" />
@@ -46,21 +58,10 @@ class Dashboard extends Component {
           >
             <SectionHeader title="Main" />
             <NavigationLink title="Dashboard" to="/" icon="icon-home4" />
-            <NavigationLink title="Pages" to="/pages" icon="icon-copy" />
+            <NavigationLink title="Pages" to="/admin" icon="icon-copy" />
+            <SectionHeader title="Some other header" />
           </Sidebar>
-          <div className="content-wrapper">
-            <div className="content">
-              <div className="row">
-                <div className="col-lg-7">
-                  <div className="panel panel-flat">
-                    <div className="panel-heading">
-                      <h6 className="panel-title">Test</h6>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <ContentWrapper />
         </Container>
       </div>
     );
